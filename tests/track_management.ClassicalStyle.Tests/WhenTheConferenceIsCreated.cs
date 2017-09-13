@@ -1,4 +1,6 @@
-﻿using Xunit;
+﻿using System.Linq;
+using track_management.ClassicalStyle.Entities;
+using Xunit;
 
 namespace track_management.ClassicalStyle.Tests
 {
@@ -9,7 +11,7 @@ namespace track_management.ClassicalStyle.Tests
 	    {
 		    var conference = new Conference();
 
-			Assert.Equal(0, conference.Tracks.Count);
+			Assert.Equal(0, conference.Tracks.Count());
 	    }
 
     }
