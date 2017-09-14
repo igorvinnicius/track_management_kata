@@ -16,8 +16,8 @@ namespace track_management.ClassicalStyle.Entities
 	    {
 			_talks = new List<Talk>();
 
-		    MorningSession = new Session();
-		    AfternoonSession = new Session();
+		    MorningSession = new Session(new TimeSpan(9,0,0), new TimeSpan(12,0,0));
+		    AfternoonSession = new Session(new TimeSpan(13, 0, 0), new TimeSpan(17, 0, 0));
 		}
 
 	}
