@@ -15,5 +15,21 @@ namespace track_management.ClassicalStyle.Tests
 
 	    }
 
-    }
+	    [Fact]
+	    public void ShouldHaveAMorningSession()
+	    {
+		    var track = new Track();
+
+		    Assert.NotNull(track.MorningSession);
+	    }
+
+	    [Fact]
+	    public void ShouldHaveAAfternoonSession()
+	    {
+		    var track = new Track();
+
+		    Assert.NotNull(track.AfternoonSession);
+	    }
+
+	}
 }

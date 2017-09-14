@@ -12,7 +12,10 @@ namespace track_management.ClassicalStyle.Entities
 	    public Conference()
 	    {
 			_tracks = new List<Track>();
+			
 	    }
+
+
 
     }
 }
