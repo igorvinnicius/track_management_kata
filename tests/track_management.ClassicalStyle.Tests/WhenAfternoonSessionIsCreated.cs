@@ -31,5 +31,27 @@ namespace track_management.ClassicalStyle.Tests
 		    Assert.Equal(expectedFinish, afternoonSession.FinishAt);
 
 	    }
+
+	    [Fact]
+	    public void ShouldHaveATotalOfTheDifferenceBetweenFinishAtAndStartAt()
+	    {
+		    var startAt = new TimeSpan(13, 0, 0);
+		    var finishAt = new TimeSpan(17, 0, 0);
+
+		    var expectedTotalOfTime = finishAt.Subtract(startAt);
+
+		    var sessionBuilder = new SessionBuilder();
+
+		    var afternoonSession = sessionBuilder
+			    .WithStartAt(startAt)
+			    .WithFinishAt(finishAt)
+			    .Build();
+
+		    Assert.Equal(expectedTotalOfTime, afternoonSession.TotalTime);
+
+
+	    }
+
+
 	}
 }
