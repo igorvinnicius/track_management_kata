@@ -12,12 +12,24 @@ namespace track_management.ClassicalStyle.Tests
 	    public void ShouldStartAtASetTime()
 	    {
 		    var expectedStart = new TimeSpan(13, 0, 0);
+		    var expectedFinish = new TimeSpan(17, 0, 0);
 
-			var someEvent = new Event(expectedStart);
+			var someEvent = new Event(expectedStart, expectedFinish);
 
 		    Assert.Equal(expectedStart, someEvent.StartAt);
 		}
 
+	    [Fact]
+	    public void ShouldFinishAtASetTime()
+	    {
+		    var expectedStart = new TimeSpan(13, 0, 0);
+			var expectedFinish = new TimeSpan(17, 0, 0);
 
-    }
+		    var someEvent = new Event(expectedStart, expectedFinish);
+
+		    Assert.Equal(expectedFinish, someEvent.FinishAt);
+	    }
+
+
+	}
 }

@@ -9,15 +9,22 @@ namespace track_management.ClassicalStyle.Entities
     public class Event
     {
 	    public TimeSpan StartAt { get; private set; }
+	    public TimeSpan FinishAt { get; private set; }
 
-	    public Event(TimeSpan startTime)
+	    public Event(TimeSpan startTime, TimeSpan finishTime)
 	    {
 			SetStartTime(startTime);
+			SetFinishTime(finishTime);
 	    }
 
 	    public void SetStartTime(TimeSpan startTime)
 	    {
 		    StartAt = startTime;
 	    }
-    }
+
+	    public void SetFinishTime(TimeSpan finishTime)
+	    {
+		    FinishAt = finishTime;
+	    }
+	}
 }
