@@ -7,27 +7,33 @@ namespace track_management.ClassicalStyle.Tests.Builders
 {
     public class EventBuilder
     {
-	    public TimeSpan DefaultStartAt { get; private set; }
-	    public TimeSpan DefaultFinishAt { get; private set; }
+	    public TimeSpan DefaultStartAt  => new TimeSpan(12, 0, 0);
+	    public TimeSpan DefaultFinishAt => new TimeSpan(12, 59, 0);
+
+	    private TimeSpan _startAt;
+	    private TimeSpan _finishAt;
+
+	    public EventBuilder()
+	    {
+		    WithStartAt(DefaultStartAt);
+		    WithFinishAt(DefaultFinishAt);
+	    }
 
 	    public EventBuilder WithStartAt(TimeSpan startAt)
 	    {
-		    this.DefaultStartAt = startAt;
+		    this._startAt = startAt;
 		    return this;
 	    }
 
 	    public EventBuilder WithFinishAt(TimeSpan finishAt)
 	    {
-		    this.DefaultFinishAt = finishAt;
+		    this._finishAt = finishAt;
 		    return this;
 	    }
 
-	   
-
-
 	    public Event Build()
 	    {
-		    var session = new Event(DefaultStartAt, DefaultFinishAt);
+		    var session = new Event(_startAt, _finishAt);
 
 		    return session;
 	    }
