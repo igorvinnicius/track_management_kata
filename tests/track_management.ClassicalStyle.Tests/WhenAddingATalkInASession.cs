@@ -13,7 +13,10 @@ namespace track_management.ClassicalStyle.Tests
 	    public void TalkShouldBeAddedIfSessionISEmpty()
 	    {
 			var sessionBuilder = new SessionBuilder();
-		    var session = sessionBuilder.Build();
+			var session = sessionBuilder
+				.WithStartAt(new TimeSpan(9, 0, 0))
+				.WithFinishAt(new TimeSpan(12, 0, 0))
+				.Build();
 
 			var talkBuilder = new TalkBuilder();
 		    var talk = talkBuilder.Build();
@@ -24,7 +27,7 @@ namespace track_management.ClassicalStyle.Tests
 	    }
 
 	    [Fact]
-	    public void TalkShoudBeAddedIfTheDurationIsLessThanTimeRemaningInSession()
+	    public void TalkShouldBeAddedIfTheDurationIsLessThanTimeRemaningInSession()
 	    {
 			var sessionBuilder = new SessionBuilder();
 		    var session = sessionBuilder
@@ -43,6 +46,27 @@ namespace track_management.ClassicalStyle.Tests
 		    Assert.True(session.Talks.Count() == 1);
 
 		}
+
+	    [Fact]
+	    public void TalkShouldNotBeAddedIfTheDurationIsGreaterThanTimeRemaningInSession()
+	    {
+		    var sessionBuilder = new SessionBuilder();
+		    var session = sessionBuilder
+			    .WithStartAt(new TimeSpan(11, 0, 0))
+			    .WithFinishAt(new TimeSpan(12, 0, 0))
+			    .Build();
+
+		    var talkBuilder = new TalkBuilder();
+		    var talk = talkBuilder
+			    .WithDuration(60)
+			    .Build();
+
+		    session.AddTalk(talk);
+
+		    Assert.True(!session.Talks.Any());
+
+		}
+
 
     }
 }

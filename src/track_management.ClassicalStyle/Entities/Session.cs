@@ -32,14 +32,14 @@ namespace track_management.ClassicalStyle.Entities
 			FinishAt = finishTime;
 		}
 
-		private TimeSpan CalculateTotalTime()
+		private void CalculateTotalTime()
 		{
-			return new TimeSpan(FinishAt.Ticks - StartAt.Ticks);
+			TotalTime = FinishAt.Subtract(StartAt);
 		}
 
 		public TimeSpan CalculateTimeRemaining()
 		{
-			return CalculateTotalTime().Subtract(new TimeSpan(0, CauculateTalksTime(), 0));
+			return TotalTime.Subtract(new TimeSpan(0, CauculateTalksTime(), 0));
 		}
 
 		public int CauculateTalksTime()
@@ -52,9 +52,14 @@ namespace track_management.ClassicalStyle.Entities
 			return CalculateTimeRemaining().TotalMinutes > 0;
 		}
 
+		private bool CanAddTalk(int duration)
+		{
+		  return CalculateTimeRemaining().TotalMinutes - duration > 0;
+		}
+
 		public void AddTalk(Talk talk)
 		{
-			if(HasAvailableTime())
+			if(CanAddTalk(talk.Duration))
 			_talks.Add(talk);
 		}
 	}
