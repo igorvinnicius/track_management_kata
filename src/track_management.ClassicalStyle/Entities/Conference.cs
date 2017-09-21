@@ -16,6 +16,11 @@ namespace track_management.ClassicalStyle.Entities
 	    }
 
 
+	    public void InsertTrack(Track track)
+	    {
+			this._tracks.Add(track);
+	    }
+
 
     }
 }
