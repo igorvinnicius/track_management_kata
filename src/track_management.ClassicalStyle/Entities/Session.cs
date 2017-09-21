@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace track_management.ClassicalStyle.Entities
 {
@@ -31,14 +32,29 @@ namespace track_management.ClassicalStyle.Entities
 			FinishAt = finishTime;
 		}
 
-		private void CalculateTotalTime()
+		private TimeSpan CalculateTotalTime()
 		{
-			TotalTime = FinishAt.Subtract(StartAt);
+			return new TimeSpan(FinishAt.Ticks - StartAt.Ticks);
 		}
 
+		public TimeSpan CalculateTimeRemaining()
+		{
+			return CalculateTotalTime().Subtract(new TimeSpan(0, CauculateTalksTime(), 0));
+		}
+
+		public int CauculateTalksTime()
+		{
+			return _talks.Sum(t => t.Duration);
+		}
+
+		public bool HasAvailableTime()
+		{
+			return CalculateTimeRemaining().TotalMinutes > 0;
+		}
 
 		public void AddTalk(Talk talk)
 		{
+			if(HasAvailableTime())
 			_talks.Add(talk);
 		}
 	}

@@ -22,5 +22,27 @@ namespace track_management.ClassicalStyle.Tests
 
 			Assert. True(session.Talks.Count() == 1);
 	    }
+
+	    [Fact]
+	    public void TalkShoudBeAddedIfTheDurationIsLessThanTimeRemaningInSession()
+	    {
+			var sessionBuilder = new SessionBuilder();
+		    var session = sessionBuilder
+				.WithStartAt(new TimeSpan(9,0,0))
+			    .WithFinishAt(new TimeSpan(12, 0, 0))
+				.Build();
+
+		    var talkBuilder = new TalkBuilder();
+		    var talk = talkBuilder
+				.WithDuration(30)
+				.Build();
+
+
+		    session.AddTalk(talk);
+
+		    Assert.True(session.Talks.Count() == 1);
+
+		}
+
     }
 }
