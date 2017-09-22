@@ -67,6 +67,28 @@ namespace track_management.ClassicalStyle.Tests
 
 		}
 
+	    [Fact]
+	    public void TalkShouldDecreaseTheSessionRemainingTime()
+	    {
+		    var sessionBuilder = new SessionBuilder();
+		    var session = sessionBuilder
+			    .WithStartAt(new TimeSpan(9, 0, 0))
+			    .WithFinishAt(new TimeSpan(12, 0, 0))
+			    .Build();
+
+		    var talkBuilder = new TalkBuilder();
+		    var talk = talkBuilder
+			    .WithDuration(60)
+			    .Build();
+
+			session.AddTalk(talk);
+
+		    var expectedRemainingTime = session.TotalTime.TotalMinutes - talk.Duration;
+
+			Assert.Equal(expectedRemainingTime, session.CalculateTimeRemaining().TotalMinutes);
+
+	    }
+
 
     }
 }
