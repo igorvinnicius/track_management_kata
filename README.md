@@ -9,7 +9,6 @@ You are planning a big programming conference and have received many proposals w
 * Morning sessions begin at 9am and must finish by 12 noon, for lunch.
 * Afternoon sessions begin at 1pm and must finish in time for the networking event.
 * The networking event can start no earlier than 4:00 and no later than 5:00.
-* No talk title has numbers in it.
 * All talk lengths are either in minutes (not hours) or lightning (5 minutes).
 * Presenters will be very punctual; there needs to be no gap between sessions.
 Note that depending on how you choose to complete this problem, your solution may give a different ordering or combination of talks into tracks. This is acceptable; you don’t need to exactly duplicate the sample output given here.
