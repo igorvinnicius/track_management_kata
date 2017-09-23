@@ -7,15 +7,6 @@ namespace track_management.ClassicalStyle.Tests
     public class WhenTrackIsCreated
     {
 	    [Fact]
-	    public void TalksCountShouldBeZero()
-	    {
-		    var track = new Track();
-
-			Assert.Equal(0, track.Talks.Count());
-
-	    }
-
-	    [Fact]
 	    public void ShouldHaveAMorningSession()
 	    {
 		    var track = new Track();

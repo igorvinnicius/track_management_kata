@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using track_management.ClassicalStyle.Tests.Builders;
 using Xunit;
@@ -21,9 +22,9 @@ namespace track_management.ClassicalStyle.Tests
 				.WithDuration(60)
 				.Build();
 
+			track.MorningSession.AddTalk(talk);
 
-
-			
+			Assert.True(track.MorningSession.Talks.Count() == 1);
 	    }
 
 
