@@ -24,6 +24,7 @@ namespace track_management.ClassicalStyle.Tests
 		    session.AddTalk(talk);
 
 			Assert. True(session.Talks.Count() == 1);
+				
 	    }
 
 	    [Fact]
