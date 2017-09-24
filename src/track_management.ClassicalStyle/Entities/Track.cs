@@ -26,5 +26,11 @@ namespace track_management.ClassicalStyle.Entities
 		    AfternoonSession = _afternoonSession;
 	    }
 
-	}
+	    public void AddTalk(Talk talk)
+	    {
+			MorningSession.AddTalk(talk);
+	    }
+
+
+    }
 }
