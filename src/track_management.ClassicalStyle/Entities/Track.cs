@@ -28,7 +28,11 @@ namespace track_management.ClassicalStyle.Entities
 
 	    public void AddTalk(Talk talk)
 	    {
-			MorningSession.AddTalk(talk);
+			if(MorningSession.HasAvailableTime())
+				MorningSession.AddTalk(talk);
+
+			if(AfternoonSession.HasAvailableTime())
+				AfternoonSession.AddTalk(talk);
 	    }
 
 
