@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace track_management.ClassicalStyle.Entities
 {
@@ -9,8 +10,9 @@ namespace track_management.ClassicalStyle.Entities
 	    public Session MorningSession { get; private set; }
 
 	    public Session AfternoonSession { get; private set; }
+	    public int TotalTime { get; private set; }
 
-		public Track()
+	    public Track()
 	    {
 		    MorningSession = new Session(new TimeSpan(9,0,0), new TimeSpan(12,0,0));
 		    AfternoonSession = new Session(new TimeSpan(13, 0, 0), new TimeSpan(17, 0, 0));
@@ -28,13 +30,28 @@ namespace track_management.ClassicalStyle.Entities
 
 	    public void AddTalk(Talk talk)
 	    {
-			if(MorningSession.HasAvailableTime())
+			if(MorningSession.HasAvailableTime() && !TalkAlreadyExists(talk))
 				MorningSession.AddTalk(talk);
 
-			if(AfternoonSession.HasAvailableTime())
+			if(AfternoonSession.HasAvailableTime() && !TalkAlreadyExists(talk))
 				AfternoonSession.AddTalk(talk);
+
+			CalculateTotalTime();
 	    }
 
+	    private void CalculateTotalTime()
+	    {
+		    this.TotalTime = this.MorningSession.CauculateTalksTime() + this.AfternoonSession.CauculateTalksTime();
+	    }
+
+	    private bool TalkAlreadyExists(Talk talk)
+	    {
+		    var inMorningSession = MorningSession.Talks.Any(t => t.Name.Contains(talk.Name));
+		    var inAfternoonSession = AfternoonSession.Talks.Any(t => t.Name.Contains(talk.Name));
+
+		    return inMorningSession || inAfternoonSession;
+
+	    }
 
     }
 }

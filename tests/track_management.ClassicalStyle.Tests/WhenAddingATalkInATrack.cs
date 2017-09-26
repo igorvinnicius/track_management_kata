@@ -74,6 +74,8 @@ namespace track_management.ClassicalStyle.Tests
 			   track.AddTalk(talk);
 		    }
 
+			Assert.Equal(expectedTotalTime, track.TotalTime);
+
 	    }
 
 

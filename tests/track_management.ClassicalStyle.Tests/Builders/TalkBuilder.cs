@@ -48,6 +48,7 @@ namespace track_management.ClassicalStyle.Tests.Builders
 		public Talk Build()
 	    {
 			var talk = new Talk();
+		    talk.Name = _name;
 		    talk.SetDuration(_duration);
 
 
