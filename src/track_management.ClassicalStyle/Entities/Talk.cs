@@ -2,7 +2,9 @@
 {
 	public class Talk
 	{
-		public int Duration { get; set; }
+		public string Name { get; set; }
+
+		public int Duration { get; private set; }
 
 		public void SetDuration(int duration)
 		{
