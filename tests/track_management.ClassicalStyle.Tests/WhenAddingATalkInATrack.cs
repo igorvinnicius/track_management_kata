@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using track_management.ClassicalStyle.Entities;
 using track_management.ClassicalStyle.Tests.Builders;
+using track_management.ClassicalStyle.Tests.WellKnownTypes;
 using Xunit;
 
 namespace track_management.ClassicalStyle.Tests
 {
-    public class WhenAddingATalkInTheMorningSession
+    public class WhenAddingATalkInATrackcs
     {
 
 
@@ -48,6 +50,32 @@ namespace track_management.ClassicalStyle.Tests
 		    Assert.True(track.AfternoonSession.Talks.Count() == 1);
 
 		}
+
+	    [Fact]
+	    public void TrackTotalTimeShouldBeSumOkTalksInMorningSessionAndAfternoonSession()
+	    {
+		    var track = new TrackBuilder()
+			    .WithMorningSession(new SessionBuilder().ForWellKnownSession(WellKnownSessions.MorningSession()))
+			    .WithAfternoonSession(new SessionBuilder().ForWellKnownSession(WellKnownSessions.AfternoonSession()))
+			    .Build();
+
+			var talkBuilder = new TalkBuilder();
+
+		    var talks = new Talk[]
+		    {
+			    talkBuilder.ForWellKnownTalk(WellKnownTalks.WritingFastTestsAgainstEnterpriseRails()).Build(),
+			    talkBuilder.ForWellKnownTalk(WellKnownTalks.OverdoingItInPython()).Build()
+		    };
+
+		    var expectedTotalTime = talks.Sum(t => t.Duration);
+
+		    foreach (var talk in talks)
+		    {
+			   track.AddTalk(talk);
+		    }
+
+	    }
+
 
     }
 }
