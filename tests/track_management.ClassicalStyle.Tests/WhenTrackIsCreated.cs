@@ -22,5 +22,13 @@ namespace track_management.ClassicalStyle.Tests
 		    Assert.NotNull(track.AfternoonSession);
 	    }
 
-	}
+	    [Fact]
+	    public void ShouldNotHaveAddedEvents()
+	    {
+			var track = new Track();
+
+			Assert.Equal(track.Events.Count(), 0);
+	    }
+
+    }
 }

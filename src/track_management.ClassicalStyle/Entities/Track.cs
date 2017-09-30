@@ -13,10 +13,15 @@ namespace track_management.ClassicalStyle.Entities
 	    public int TotalTime { get; private set; }
 	    public int TotalTalks { get; private set; }
 
-	    public Track()
+	    private readonly IList<Event> _events;
+	    public IEnumerable<Event> Events => _events;
+
+		public Track()
 	    {
 		    MorningSession = new Session(new TimeSpan(9,0,0), new TimeSpan(12,0,0));
 		    AfternoonSession = new Session(new TimeSpan(13, 0, 0), new TimeSpan(17, 0, 0));
+
+			_events = new List<Event>();
 		}
 
 	    public void SetMorningSession(Session _morningSession)
