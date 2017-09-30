@@ -11,6 +11,7 @@ namespace track_management.ClassicalStyle.Entities
 
 	    public Session AfternoonSession { get; private set; }
 	    public int TotalTime { get; private set; }
+	    public int TotalTalks { get; private set; }
 
 	    public Track()
 	    {
@@ -37,6 +38,7 @@ namespace track_management.ClassicalStyle.Entities
 				AfternoonSession.AddTalk(talk);
 
 			CalculateTotalTime();
+			CalculateTotalTalks();
 	    }
 
 	    private void CalculateTotalTime()
@@ -51,6 +53,11 @@ namespace track_management.ClassicalStyle.Entities
 
 		    return inMorningSession || inAfternoonSession;
 
+	    }
+
+	    private void CalculateTotalTalks()
+	    {
+		    this.TotalTalks = MorningSession.Talks.Count() + AfternoonSession.Talks.Count();
 	    }
 
     }

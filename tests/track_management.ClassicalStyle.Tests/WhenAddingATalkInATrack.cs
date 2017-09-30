@@ -78,6 +78,24 @@ namespace track_management.ClassicalStyle.Tests
 
 	    }
 
+	    [Fact]
+	    public void TrackShouldNotAddTalkIfItAlreadyExists()
+	    {
+		    var track = new TrackBuilder()
+			    .WithMorningSession(new SessionBuilder().ForWellKnownSession(WellKnownSessions.MorningSession()))
+			    .WithAfternoonSession(new SessionBuilder().ForWellKnownSession(WellKnownSessions.AfternoonSession()))
+			    .Build();
+
+		    var talk = new TalkBuilder().ForWellKnownTalk(WellKnownTalks.WritingFastTestsAgainstEnterpriseRails()).Build();
+
+			track.AddTalk(talk);
+
+			track.AddTalk(talk);
+
+			Assert.Equal(track.TotalTalks, 1);
+
+	    }
+
 
     }
 }
