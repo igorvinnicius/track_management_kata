@@ -52,7 +52,7 @@ namespace track_management.ClassicalStyle.Tests
 		}
 
 	    [Fact]
-	    public void TrackTotalTimeShouldBeSumOkTalksInMorningSessionAndAfternoonSession()
+	    public void TrackRemainingTimeShouldBeSumOkTalksInMorningSessionAndAfternoonSession()
 	    {
 		    var track = new TrackBuilder()
 			    .WithMorningSession(new SessionBuilder().ForWellKnownSession(WellKnownSessions.MorningSession()))
@@ -67,14 +67,14 @@ namespace track_management.ClassicalStyle.Tests
 			    talkBuilder.ForWellKnownTalk(WellKnownTalks.OverdoingItInPython()).Build()
 		    };
 
-		    var expectedTotalTime = talks.Sum(t => t.Duration);
-
 		    foreach (var talk in talks)
 		    {
 			   track.AddTalk(talk);
 		    }
 
-			Assert.Equal(expectedTotalTime, track.TotalTime);
+		    var expectedTotalTime = track.TotalTime.TotalMinutes - talks.Sum(t => t.Duration);
+
+			Assert.Equal(expectedTotalTime, track.CalculateRemainingTime().TotalMinutes);
 
 	    }
 

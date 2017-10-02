@@ -22,7 +22,7 @@ namespace track_management.ClassicalStyle.Tests.WellKnownTypes
 
 	public class MorningSession : WellKnownSession
 	{
-		public override TimeSpan StartAt => new TimeSpan(9,0,0);
+		public override TimeSpan StartAt => new TimeSpan(8,0,0);
 		public override TimeSpan FinishAt => new TimeSpan(12, 0, 0);
 	}
 

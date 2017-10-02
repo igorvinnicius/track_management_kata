@@ -11,7 +11,7 @@ namespace track_management.ClassicalStyle.Tests
     {
 
 	    [Fact]
-	    public void ShouldIncreaseTrackTotalTime()
+	    public void ShouldDecreaseTrackRemainingTime()
 	    {
 		    var track = new TrackBuilder()
 			    .WithMorningSession(new SessionBuilder().ForWellKnownSession(WellKnownSessions.MorningSession()))
@@ -20,11 +20,11 @@ namespace track_management.ClassicalStyle.Tests
 
 		    var breakFast = new EventBuilder().Build();
 
-		    var trackTotalTimeBeforeEvent = track.TotalTime;
+		    var trackRemainingTimeBeforeEvent = track.CalculateRemainingTime();
 
 		    track.AddEvent(breakFast);
 
-			Assert.True(trackTotalTimeBeforeEvent < track.TotalTime);
+			Assert.True(trackRemainingTimeBeforeEvent < track.CalculateRemainingTime());
 
 	    }
 
