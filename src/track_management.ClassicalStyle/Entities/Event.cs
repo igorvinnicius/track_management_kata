@@ -11,6 +11,8 @@ namespace track_management.ClassicalStyle.Entities
 	    public TimeSpan StartAt { get; private set; }
 	    public TimeSpan FinishAt { get; private set; }
 
+	    public int Duration { get; private set; }
+
 	    public Event(TimeSpan startTime, TimeSpan finishTime)
 	    {
 			SetStartTime(startTime);
@@ -26,5 +28,10 @@ namespace track_management.ClassicalStyle.Entities
 	    {
 		    FinishAt = finishTime;
 	    }
-	}
+
+	    public void SetDuration(int duration)
+	    {
+		    this.Duration = duration;
+	    }
+    }
 }

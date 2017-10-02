@@ -48,7 +48,7 @@ namespace track_management.ClassicalStyle.Entities
 
 	    private void CalculateTotalTime()
 	    {
-		    this.TotalTime = this.MorningSession.CauculateTalksTime() + this.AfternoonSession.CauculateTalksTime();
+		    this.TotalTime = this.MorningSession.CauculateTalksTime() + this.AfternoonSession.CauculateTalksTime() + Events.Sum(e => e.Duration);
 	    }
 
 	    private bool TalkAlreadyExists(Talk talk)
@@ -63,6 +63,13 @@ namespace track_management.ClassicalStyle.Entities
 	    private void CalculateTotalTalks()
 	    {
 		    this.TotalTalks = MorningSession.Talks.Count() + AfternoonSession.Talks.Count();
+	    }
+
+	    public void AddEvent(Event newEvent)
+	    {
+			_events.Add(newEvent);
+
+			CalculateTotalTime();
 	    }
 
     }

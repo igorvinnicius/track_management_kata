@@ -9,14 +9,17 @@ namespace track_management.ClassicalStyle.Tests.Builders
     {
 	    public TimeSpan DefaultStartAt  => new TimeSpan(12, 0, 0);
 	    public TimeSpan DefaultFinishAt => new TimeSpan(12, 59, 0);
+	    public int DefaultDuration => 60;
 
 	    private TimeSpan _startAt;
 	    private TimeSpan _finishAt;
+	    private int _duration;
 
 	    public EventBuilder()
 	    {
 		    WithStartAt(DefaultStartAt);
 		    WithFinishAt(DefaultFinishAt);
+		    WithDuration(DefaultDuration);
 	    }
 
 	    public EventBuilder WithStartAt(TimeSpan startAt)
@@ -31,11 +34,19 @@ namespace track_management.ClassicalStyle.Tests.Builders
 		    return this;
 	    }
 
-	    public Event Build()
+	    public EventBuilder WithDuration(int duration)
 	    {
-		    var session = new Event(_startAt, _finishAt);
+		    this._duration = duration;
+		    return this;
+	    }
+		
+		public Event Build()
+	    {
+		    var newEvent = new Event(_startAt, _finishAt);
 
-		    return session;
+			newEvent.SetDuration(_duration);
+
+		    return newEvent;
 	    }
 
 	}
