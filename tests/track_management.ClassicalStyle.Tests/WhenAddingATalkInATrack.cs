@@ -96,6 +96,21 @@ namespace track_management.ClassicalStyle.Tests
 
 	    }
 
+	    [Fact]
+	    public void ShouldSetTalkStartAtEqualsMorningSessionStartAtIfFirstTalk()
+	    {
+		    var track = new TrackBuilder()
+			    .WithMorningSession(new SessionBuilder().ForWellKnownSession(WellKnownSessions.MorningSession()))
+			    .WithAfternoonSession(new SessionBuilder().ForWellKnownSession(WellKnownSessions.AfternoonSession()))
+			    .Build();
+
+		    var talk = new TalkBuilder().ForWellKnownTalk(WellKnownTalks.WritingFastTestsAgainstEnterpriseRails()).Build();
+
+		    track.AddTalk(talk);
+
+			Assert.Equal(talk.StartAt, track.MorningSession.StartAt);
+		}
+
 
     }
 }

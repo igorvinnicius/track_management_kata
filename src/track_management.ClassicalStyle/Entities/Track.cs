@@ -38,10 +38,12 @@ namespace track_management.ClassicalStyle.Entities
 
 	    public void AddTalk(Talk talk)
 	    {
-			if(MorningSession.HasAvailableTime() && !TalkAlreadyExists(talk))
-				MorningSession.AddTalk(talk);
+		    if (MorningSession.HasAvailableTime() && !TalkAlreadyExists(talk))
+		    {	talk.SetStartTime(MorningSession.StartAt);
+			    MorningSession.AddTalk(talk);
+		    }
 
-			if(AfternoonSession.HasAvailableTime() && !TalkAlreadyExists(talk))
+		    if(AfternoonSession.HasAvailableTime() && !TalkAlreadyExists(talk))
 				AfternoonSession.AddTalk(talk);
 
 			CalculateTotalTime();
