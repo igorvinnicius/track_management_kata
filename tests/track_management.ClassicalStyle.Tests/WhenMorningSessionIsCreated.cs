@@ -16,7 +16,7 @@ namespace track_management.ClassicalStyle.Tests
 		    var sessionBuilder = new SessionBuilder();
 		    var morningSession = sessionBuilder.ForWellKnownSession(WellKnownSessions.MorningSession()).Build();
 
-		    var expectedStart = new TimeSpan(9, 0, 0);
+		    var expectedStart = new TimeSpan(8, 0, 0);
 
 			Assert.Equal(expectedStart, morningSession.StartAt);
 	    }
