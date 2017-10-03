@@ -7,22 +7,31 @@ namespace track_management.ClassicalStyle.Tests.Builders
 {
     public class EventBuilder
     {
+	    public string DefaultName => "Coffee Break";
 	    public TimeSpan DefaultStartAt  => new TimeSpan(12, 0, 0);
 	    public TimeSpan DefaultFinishAt => new TimeSpan(12, 59, 0);
 	    public int DefaultDuration => 60;
 
+	    private string _name;
 	    private TimeSpan _startAt;
 	    private TimeSpan _finishAt;
 	    private int _duration;
 
 	    public EventBuilder()
 	    {
+		    WithName(DefaultName);
 		    WithStartAt(DefaultStartAt);
 		    WithFinishAt(DefaultFinishAt);
 		    WithDuration(DefaultDuration);
 	    }
 
-	    public EventBuilder WithStartAt(TimeSpan startAt)
+	    public EventBuilder WithName(string name)
+	    {
+		    this._name = name;
+		    return this;
+	    }
+
+		public EventBuilder WithStartAt(TimeSpan startAt)
 	    {
 		    this._startAt = startAt;
 		    return this;
@@ -44,6 +53,7 @@ namespace track_management.ClassicalStyle.Tests.Builders
 	    {
 		    var newEvent = new Event(_startAt, _finishAt);
 
+		    newEvent.Name = _name;
 			newEvent.SetDuration(_duration);
 
 		    return newEvent;

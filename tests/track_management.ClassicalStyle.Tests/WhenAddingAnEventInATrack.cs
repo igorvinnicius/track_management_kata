@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using track_management.ClassicalStyle.Tests.Builders;
 using track_management.ClassicalStyle.Tests.WellKnownTypes;
@@ -27,6 +28,24 @@ namespace track_management.ClassicalStyle.Tests
 			Assert.True(trackRemainingTimeBeforeEvent < track.CalculateRemainingTime());
 
 	    }
+
+	    [Fact]
+	    public void ShouldNotBeAddedIfAlreadyExists()
+	    {
+		    var track = new TrackBuilder()
+			    .WithMorningSession(new SessionBuilder().ForWellKnownSession(WellKnownSessions.MorningSession()))
+			    .WithAfternoonSession(new SessionBuilder().ForWellKnownSession(WellKnownSessions.AfternoonSession()))
+			    .Build();
+
+		    var breakFast = new EventBuilder().Build();
+
+		    track.AddEvent(breakFast);
+
+		    track.AddEvent(breakFast);
+
+		    Assert.Equal(track.Events.Count(), 1);
+
+		}
 
     }
 }

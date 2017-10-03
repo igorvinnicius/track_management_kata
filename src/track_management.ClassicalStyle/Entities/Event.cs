@@ -8,6 +8,8 @@ namespace track_management.ClassicalStyle.Entities
 {
     public class Event
     {
+	    public string Name { get; set; }
+
 	    public TimeSpan StartAt { get; private set; }
 	    public TimeSpan FinishAt { get; private set; }
 

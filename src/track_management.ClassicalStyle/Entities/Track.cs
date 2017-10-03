@@ -81,9 +81,16 @@ namespace track_management.ClassicalStyle.Entities
 
 	    public void AddEvent(Event newEvent)
 	    {
-			_events.Add(newEvent);
+		    if (!EventAlreadyExists(newEvent))
+		    {
+			    _events.Add(newEvent);
+			    CalculateTotalTime();
+		    }
+	    }
 
-			CalculateTotalTime();
+	    private bool EventAlreadyExists(Event newEvent)
+	    {
+		    return Events.Any(e => e.Name.Contains(newEvent.Name));
 	    }
 
     }
