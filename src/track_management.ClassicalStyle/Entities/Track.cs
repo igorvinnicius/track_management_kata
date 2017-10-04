@@ -38,10 +38,8 @@ namespace track_management.ClassicalStyle.Entities
 
 	    public void AddTalk(Talk talk)
 	    {
-		    if (MorningSession.HasAvailableTime() && !TalkAlreadyExists(talk))
-		    {	talk.SetStartTime(MorningSession.StartAt);
-			    MorningSession.AddTalk(talk);
-		    }
+		    if (CanAddTalkToMorningSesion(talk))
+				AddTalkToMorningSession(talk);
 
 		    if(AfternoonSession.HasAvailableTime() && !TalkAlreadyExists(talk))
 				AfternoonSession.AddTalk(talk);
@@ -50,6 +48,22 @@ namespace track_management.ClassicalStyle.Entities
 			CalculateTotalTalks();
 		    CalculateRemainingTime();
 	    }
+
+	    private bool CanAddTalkToMorningSesion(Talk talk)
+	    {
+		    return MorningSession.HasAvailableTime() && !TalkAlreadyExists(talk);
+
+	    }
+
+	    private void AddTalkToMorningSession(Talk talk)
+	    {
+		    var startAt = MorningSession.Talks.Any() ? MorningSession.Talks.Last().FinishAt : MorningSession.StartAt;
+
+		    talk.SetStartTime(startAt);
+		    var timeToBeAdded = new TimeSpan(0, talk.Duration, 0);
+			talk.SetFinishTime(talk.StartAt.Add(timeToBeAdded));
+		    MorningSession.AddTalk(talk);
+		}
 
 	    private void CalculateTotalTime()
 	    {

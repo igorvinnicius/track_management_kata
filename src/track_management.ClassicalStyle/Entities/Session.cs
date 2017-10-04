@@ -7,7 +7,7 @@ namespace track_management.ClassicalStyle.Entities
 	public class Session
 	{
 		private readonly IList<Talk> _talks;
-		public IEnumerable<Talk> Talks => _talks;
+		public IList<Talk> Talks => _talks;
 
 		public TimeSpan StartAt { get; private set; }
 		public TimeSpan FinishAt { get; private set; }
