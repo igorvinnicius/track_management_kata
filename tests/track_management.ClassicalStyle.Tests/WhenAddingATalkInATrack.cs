@@ -135,6 +135,7 @@ namespace track_management.ClassicalStyle.Tests
 			Assert.Equal(new TimeSpan(8, 0, 0), track.MorningSession.Talks[0].StartAt);
 		    Assert.Equal(new TimeSpan(9, 0, 0), track.MorningSession.Talks[0].FinishAt);
 		    Assert.Equal(new TimeSpan(9, 0, 0), track.MorningSession.Talks[1].StartAt);
+		    Assert.Equal(new TimeSpan(9, 45, 0), track.MorningSession.Talks[1].FinishAt);
 		}
 
     }
