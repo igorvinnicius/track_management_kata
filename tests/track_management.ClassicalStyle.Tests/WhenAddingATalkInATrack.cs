@@ -176,11 +176,11 @@ namespace track_management.ClassicalStyle.Tests
 		    Assert.Equal(new TimeSpan(10, 15, 0), track.MorningSession.Talks[3].StartAt);
 		    Assert.Equal(new TimeSpan(11, 0, 0), track.MorningSession.Talks[3].FinishAt);
 
-		    Assert.Equal(new TimeSpan(11, 0, 0), track.MorningSession.Talks[3].StartAt);
-		    Assert.Equal(new TimeSpan(12, 0, 0), track.MorningSession.Talks[3].FinishAt);
+		    Assert.Equal(new TimeSpan(11, 0, 0), track.MorningSession.Talks[4].StartAt);
+		    Assert.Equal(new TimeSpan(11, 45, 0), track.MorningSession.Talks[4].FinishAt);
 
-		    Assert.Equal(new TimeSpan(13, 0, 0), track.MorningSession.Talks[3].StartAt);
-		    Assert.Equal(new TimeSpan(13, 45, 0), track.MorningSession.Talks[3].FinishAt);
+		    Assert.Equal(new TimeSpan(13, 0, 0), track.AfternoonSession.Talks[0].StartAt);
+		    Assert.Equal(new TimeSpan(14, 0, 0), track.AfternoonSession.Talks[0].FinishAt);
 		}
 
 	}

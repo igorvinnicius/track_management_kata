@@ -42,7 +42,7 @@ namespace track_management.ClassicalStyle.Entities
 				AddTalkToMorningSession(talk);
 
 		    if(AfternoonSession.HasAvailableTime() && !TalkAlreadyExists(talk))
-				AfternoonSession.AddTalk(talk);
+			    AddTalkToAfternoonSession(talk);
 
 			CalculateTotalTime();
 			CalculateTotalTalks();
@@ -65,7 +65,17 @@ namespace track_management.ClassicalStyle.Entities
 		    MorningSession.AddTalk(talk);
 		}
 
-	    private void CalculateTotalTime()
+	    private void AddTalkToAfternoonSession(Talk talk)
+	    {
+		    var startAt = AfternoonSession.Talks.Any() ? AfternoonSession.Talks.Last().FinishAt : AfternoonSession.StartAt;
+
+		    talk.SetStartTime(startAt);
+		    var timeToBeAdded = new TimeSpan(0, talk.Duration, 0);
+		    talk.SetFinishTime(talk.StartAt.Add(timeToBeAdded));
+		    AfternoonSession.AddTalk(talk);
+	    }
+
+		private void CalculateTotalTime()
 	    {
 		    var timeSum = MorningSession.TotalTime.Add(AfternoonSession.TotalTime);
 
