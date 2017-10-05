@@ -13,6 +13,7 @@ namespace track_management.ClassicalStyle.Tests.WellKnownTypes
 						{
 							WritingFastTestsAgainstEnterpriseRails(),
 							OverdoingItInPython(),
+							LuaForTheMasses(),
 							RubyErrorsFromMismatchedGemVersions(),
 							CommonRubyErrors(),
 							RailsForPythonDevelopers(),
@@ -43,7 +44,13 @@ namespace track_management.ClassicalStyle.Tests.WellKnownTypes
 		    return new OverdoingItInPython();
 	    }
 
-	    public static RubyErrorsFromMismatchedGemVersions RubyErrorsFromMismatchedGemVersions()
+
+	    public static LuaForTheMasses LuaForTheMasses()
+	    {
+		    return new LuaForTheMasses();
+	    }
+
+		public static RubyErrorsFromMismatchedGemVersions RubyErrorsFromMismatchedGemVersions()
 	    {
 		    return new RubyErrorsFromMismatchedGemVersions();
 	    }
@@ -132,6 +139,13 @@ namespace track_management.ClassicalStyle.Tests.WellKnownTypes
 		public override string Name => "Overdoing it in Python";
 
 		public override int Duration => 45;
+	}
+
+	public class LuaForTheMasses : WellKnownTalk
+	{
+		public override string Name => "Lua For The Masses";
+
+		public override int Duration => 30;
 	}
 
 	public class RubyErrorsFromMismatchedGemVersions : WellKnownTalk
