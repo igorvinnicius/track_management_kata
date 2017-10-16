@@ -183,5 +183,31 @@ namespace track_management.ClassicalStyle.Tests
 		    Assert.Equal(new TimeSpan(14, 0, 0), track.AfternoonSession.Talks[0].FinishAt);
 		}
 
-	}
+	    [Fact]
+	    public void TalkShouldNotBeAddedIfHaveAnEventAtTheSameTime()
+	    {
+		    var track = new TrackBuilder()
+			    .WithMorningSession(new SessionBuilder().ForWellKnownSession(WellKnownSessions.MorningSession()))
+			    .WithAfternoonSession(new SessionBuilder().ForWellKnownSession(WellKnownSessions.AfternoonSession()))
+			    .Build();
+
+		    var newEvent = new EventBuilder().Build();
+
+			track.AddEvent(newEvent);
+
+			var talkBuilder = new TalkBuilder();
+
+		    var talk = talkBuilder
+					.WithStartAt(new TimeSpan(12, 0, 0))
+					.WithFinishAt(new TimeSpan(12, 59, 0))
+					.Build();
+
+			track.AddTalk(talk);
+
+			Assert.Equal(0, track.TotalTalks);
+
+	    }
+
+
+    }
 }

@@ -38,6 +38,9 @@ namespace track_management.ClassicalStyle.Entities
 
 	    public void AddTalk(Talk talk)
 	    {
+		    if (TalkMatchEvent(talk))
+			    return;
+
 		    if (CanAddTalkToMorningSesion(talk))
 				AddTalkToMorningSession(talk);
 
@@ -124,6 +127,12 @@ namespace track_management.ClassicalStyle.Entities
 	    private bool EventAlreadyExists(Event newEvent)
 	    {
 		    return Events.Any(e => e.Name.Contains(newEvent.Name));
+	    }
+
+	    private bool TalkMatchEvent(Talk talk)
+	    {
+		    return Events.Any(e => e.StartAt >= talk.StartAt && e.StartAt <= talk.FinishAt);
+
 	    }
 
     }

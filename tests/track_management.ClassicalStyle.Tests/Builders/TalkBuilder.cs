@@ -11,11 +11,16 @@ namespace track_management.ClassicalStyle.Tests.Builders
 
 	    public string DefaultName => "Talk 1";
 		public int DefaultDuration => 30;
+	    public TimeSpan DefaultStartAt => new TimeSpan(9,0,0);
+	    public TimeSpan DefaultFinishAt => new TimeSpan(10, 0, 0);
 
-	    private string _name;
+		private string _name;
 		private int _duration;
 
-	    public TalkBuilder()
+	    private TimeSpan _startAt;
+	    private TimeSpan _finishAt;
+
+		public TalkBuilder()
 	    {
 		    _name = DefaultName;
 		    _duration = DefaultDuration;
@@ -36,7 +41,20 @@ namespace track_management.ClassicalStyle.Tests.Builders
 
 	    }
 
-	    public TalkBuilder ForWellKnownTalk(WellKnownTalk wellKnownTalk)
+	    public TalkBuilder WithStartAt(TimeSpan startAt)
+	    {
+		    this._startAt = startAt;
+		    return this;
+
+	    }
+
+	    public TalkBuilder WithFinishAt(TimeSpan startAt)
+	    {
+		    this._finishAt = startAt;
+		    return this;
+	    }
+
+		public TalkBuilder ForWellKnownTalk(WellKnownTalk wellKnownTalk)
 	    {
 		    WithName(wellKnownTalk.Name);
 		    WithDuration(wellKnownTalk.Duration);
@@ -50,6 +68,8 @@ namespace track_management.ClassicalStyle.Tests.Builders
 			var talk = new Talk();
 		    talk.Name = _name;
 		    talk.SetDuration(_duration);
+			talk.SetStartTime(_startAt);
+			talk.SetFinishTime(_finishAt);
 
 
 		    return talk;
