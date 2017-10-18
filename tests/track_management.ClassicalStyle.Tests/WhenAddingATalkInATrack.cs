@@ -184,7 +184,7 @@ namespace track_management.ClassicalStyle.Tests
 		}
 
 	    [Fact]
-	    public void TalkShouldNotBeAddedIfHaveAnEventAtTheSameTime()
+	    public void TalkShouldNotBeAddedIfItMatchAnEvent()
 	    {
 		    var track = new TrackBuilder()
 			    .WithMorningSession(new SessionBuilder().ForWellKnownSession(WellKnownSessions.MorningSession()))
