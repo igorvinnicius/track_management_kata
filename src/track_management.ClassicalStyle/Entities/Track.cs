@@ -117,7 +117,7 @@ namespace track_management.ClassicalStyle.Entities
 
 	    public void AddEvent(Event newEvent)
 	    {
-		    if (!EventAlreadyExists(newEvent))
+		    if (CanAddEvent(newEvent))
 		    {
 			    _events.Add(newEvent);
 			    CalculateTotalTime();
@@ -134,6 +134,24 @@ namespace track_management.ClassicalStyle.Entities
 		    return Events.Any(e => e.StartAt >= talk.StartAt && e.StartAt <= talk.FinishAt);
 
 	    }
+
+	    private bool EventMatchTalk(Event newEvent)
+	    {
+		    if (MorningSession.Talks.Any(t => t.StartAt >= newEvent.StartAt && t.StartAt <= newEvent.FinishAt))
+			    return true;
+
+		    if (AfternoonSession.Talks.Any(t => t.StartAt >= newEvent.StartAt && t.StartAt <= newEvent.FinishAt))
+			    return true;
+
+			return false;
+	    }
+
+	    private bool CanAddEvent(Event newEvent)
+	    {
+		    return !EventAlreadyExists(newEvent) && !EventMatchTalk(newEvent);
+
+	    }
+
 
     }
 }
