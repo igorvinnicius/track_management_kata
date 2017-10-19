@@ -39,9 +39,25 @@ namespace track_management.ClassicalStyle.Entities
 
 		    }
 
-			
-
 	    }
 
+	    public void AutomaticScheduleEvents(IList<Event> events)
+	    {
+		    foreach (var newEvent in events)
+		    {
+			    var track = Tracks.FirstOrDefault(t => t.CalculateRemainingTime().TotalMinutes >= newEvent.Duration);
+
+			    if (track != null)
+				    track.AddEvent(newEvent);
+			    else
+			    {
+				    var newTrack = new Track();
+				    newTrack.AddEvent(newEvent);
+
+				    _tracks.Add(newTrack);
+			    }
+
+		    }
+	    }
     }
 }

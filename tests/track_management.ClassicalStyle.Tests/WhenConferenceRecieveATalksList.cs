@@ -16,7 +16,6 @@ namespace track_management.ClassicalStyle.Tests
 	    public void ShouldScheduleTalksCorrectly()
 	    {
 		    var conference = new ConferenceBuilder().Build();
-			
 
 		    conference.AutomaticScheduleTalks(GetTalks().ToList());
 
